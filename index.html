@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pārbaudes darbs</title>
+</head>
+<body>
+    <h1>Kira Khlus Spēle</h1>
+    <h2>Kontrolējiet kvadrātu un canvas fona krāsu</h2>
+    <p>Izmantojiet tastatūras taustiņus: WASD, lai kustētos, un P, W, O, lai mainītu kvadrātiņa krāsu.</p>
+    <a href="https://github.com/" target="_blank">Apmeklējiet GitHub</a>
+    <a href="https://www.example.com/" target="_blank">Apmeklējiet piemēru saiti</a>
+    <img src="https://i.redd.it/l9vklw5gh4841.jpg" alt="Placeholder attēls">
+    <canvas id="canv" width="300" height="300"></canvas>
+    <script>
+        const canv = document.getElementById('canv');
+        const ctx = canv.getContext('2d');
+        let x = 0, y = 0, backgroundColor = 'white';
+
+        function draw() {
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, 300, 300); // Notīra canvas ar fona krāsu
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x, y, 30, 30); // Zīmē melnu kvadrātu
+        }
+
+        function move(event) {
+            // Kustība ar WASD
+            if (event.key === 'w' || event.key === 'W') y -= 10; // Uz augšu
+            if (event.key === 'a' || event.key === 'A') x -= 10; // Pa kreisi
+            if (event.key === 's' || event.key === 'S') y += 10; // Uz leju
+            if (event.key === 'd' || event.key === 'D') x += 10; // Pa labi
+
+            // Canvas fona krāsas maiņa
+            if (event.key === 'p' || event.key === 'P') backgroundColor = 'pink';
+            if (event.key === 'w' || event.key === 'W') backgroundColor = 'white';
+            if (event.key === 'o' || event.key === 'O') backgroundColor = 'orange';
+        }
+
+        addEventListener('keydown', move);
+        setInterval(draw, 10); // Zīmēšana atkārtojas
+    </script>
+</body>
+</html>
